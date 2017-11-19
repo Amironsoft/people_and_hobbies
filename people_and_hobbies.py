@@ -3,43 +3,13 @@ import pandas as pd
 if __name__ == '__main__':
     print('people_and_hobbies started')
     # initial loading of data
-    username = ['Аня',
-                'Аня',
-                'Аня',
-                'Аня',
-                'Боря',
-                'Боря',
-                'Валя',
-                'Валя',
-                'Гена',
-                'Гена',
-                'Гена',
-                'Гена',
-                'Дима',
-                'Дима']
-
-    hobby = ['музыка',
-             'кино',
-             'вино',
-             'домино',
-             'кино',
-             'музыка',
-             'вино',
-             'спорт',
-             'музыка',
-             'матан',
-             'рисование',
-             'кино',
-             'вино',
-             'матан']
-
-    df = pd.DataFrame(data=dict(username=username, hobby=hobby))  # main pandas DataFrame
+    df = pd.read_csv('users.tsv', sep='\t')
     uniq_names = sorted(df['username'].unique())  # people name set
     print(uniq_names, '\n')
     main_table = []  # main table to storage name, hobby_list, count
 
     for name in uniq_names:
-        print(name) # person name
+        print(name)  # person name
         hobby_list = set(df[df['username'] == name]['hobby'].values)
         count = len(hobby_list)  # the quantity of hobbies for each person
         main_table.append([name, hobby_list, count])  # add info about each
